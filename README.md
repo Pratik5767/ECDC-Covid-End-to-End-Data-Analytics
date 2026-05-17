@@ -308,7 +308,7 @@ RETURN IF(NOT(ISBLANK(CurrentCases)), CurrentCases, 0)
 
 ### Australia Visualisation Using Parameters
 
-<video src="images/australia_visulation_using_parameters.mp4" controls width="100%" ></video>
+![Australia Visualisation](images/australia_visulation_using_parameters.gif)
 
 ---
 
