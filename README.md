@@ -37,44 +37,7 @@ The pipeline follows the **Medallion Architecture** (Bronze → Silver → Gold)
 
 ## Architecture
 
-```
-┌─────────────────────────────────────────────────────────────────┐
-│                     DATA SOURCES                                │
-│   ECDC CSV (Device Upload)    GitHub Raw CSV (HTTP)             │
-└────────────────┬────────────────────────┬───────────────────────┘
-                 │                        │
-        Dataflow Gen2              Fabric Pipeline
-                 │                        │
-                 ▼                        ▼
-┌───────────────────────────────────────────────────────────────┐
-│                     🥉 BRONZE LAYER                            │
-│            covid_stg    |    covid_stg_partitioned             │
-│        (device upload)  |  (partitioned by country & year)    │
-└──────────────────────────────┬────────────────────────────────┘
-                               │
-                       Spark Notebook
-                               │
-                               ▼
-┌───────────────────────────────────────────────────────────────┐
-│                     🥈 SILVER LAYER                            │
-│                covid_silver_transformed_data                   │
-│          (cleaned, typed, deduped, enriched)                   │
-└──────────────────────────────┬────────────────────────────────┘
-                               │
-                       Spark Notebook
-                               │
-                               ▼
-┌───────────────────────────────────────────────────────────────┐
-│                     🥇 GOLD LAYER                              │
-│   covid_gold_aggregated_kpis | dim_date | dim_location         │
-│         (aggregated KPIs ready for reporting)                  │
-└──────────────────────────────┬────────────────────────────────┘
-                               │
-                    Power BI Semantic Model
-                               │
-                               ▼
-                  📊 Interactive Power BI Dashboard
-```
+<img src="./images/achitecture.png" alt="project flow" />
 
 ---
 
